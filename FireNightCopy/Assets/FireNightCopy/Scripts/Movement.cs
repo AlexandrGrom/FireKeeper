@@ -9,9 +9,11 @@ public class Movement : MonoBehaviour
     private CharacterController controller;
     private float gravity;
 
-    void Awake()
+    private void Start()
     {
+        JoystickManager.Instance.lookingJoystic.DoubleTap += Jump;
         controller = GetComponent<CharacterController>();
+        
     }
 
     void Update()
@@ -23,15 +25,13 @@ public class Movement : MonoBehaviour
     {
         if (graundChecker.IsGrounded && gravity < 0 ) 
             gravity = -2f;
-        if (Input.GetKeyDown(KeyCode.Space) && graundChecker.IsGrounded)
-            gravity = Mathf.Sqrt(jumpHight * -2f * Physics.gravity.y);
 
         gravity += Physics.gravity.y * Time.deltaTime;
     }
 
     private void CalculateRotation()
     {
-        float mouseX = JoysticManager.Instance.lookingJoystic.Horizontal * JoysticManager.Instance.mouseSensitivity * Time.deltaTime;
+        float mouseX = JoystickManager.Instance.lookingJoystic.Horizontal * JoystickManager.Instance.mouseSensitivity * Time.deltaTime;
         transform.Rotate(Vector3.up * mouseX);
     }
 
@@ -40,11 +40,16 @@ public class Movement : MonoBehaviour
         CalculateGravity();
         CalculateRotation();
 
-        float x = JoysticManager.Instance.movingJoystic.Horizontal;
-        float z = JoysticManager.Instance.movingJoystic.Vertical;
+        float x = JoystickManager.Instance.movingJoystic.Horizontal;
+        float z = JoystickManager.Instance.movingJoystic.Vertical;
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
         move *= speed * Time.deltaTime;
         move.y = gravity * Time.deltaTime;
         return move;
+    }
+
+    private void Jump()
+    {
+        if (graundChecker.IsGrounded) gravity = Mathf.Sqrt(jumpHight * -2f * Physics.gravity.y);
     }
 }

@@ -736,6 +736,7 @@ MonoBehaviour:
   axisOptions: 0
   snapX: 0
   snapY: 0
+  dableTapTolerance: 0.2
   background: {fileID: 8170153792786241179}
   handle: {fileID: 8170153791993588865}
 --- !u!1 &8170153791766745860
@@ -750,7 +751,6 @@ GameObject:
   - component: {fileID: 8170153791766745863}
   - component: {fileID: 8170153791766745862}
   - component: {fileID: 8170153791766745856}
-  - component: {fileID: 8170153791766745864}
   m_Layer: 5
   m_Name: Moving Joystic
   m_TagString: Untagged
@@ -816,21 +816,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8170153791766745860}
   m_CullTransparentMesh: 0
---- !u!114 &8170153791766745864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8170153791766745860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cb979dc4068cc4d882d79763d6a1da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookingJoystic: {fileID: 0}
-  movingJoystic: {fileID: 0}
-  mouseSensitivity: 0
 --- !u!1 &8170153791993588864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,5 +1212,6 @@ MonoBehaviour:
   axisOptions: 0
   snapX: 0
   snapY: 0
+  dableTapTolerance: 0.2
   background: {fileID: 8170153792273423527}
   handle: {fileID: 8170153792521086653}
