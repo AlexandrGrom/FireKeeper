@@ -84,9 +84,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public void OnDrag(PointerEventData eventData)
     {
-        dableTapTime -= Time.deltaTime;
-        if (dableTapTime<0) firstTap = false;
-
         cam = null;
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
             cam = canvas.worldCamera;
@@ -167,6 +164,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             return localPoint - (background.anchorMax * baseRect.sizeDelta) + pivotOffset;
         }
         return Vector2.zero;
+    }
+
+    private void Update()
+    {
+        dableTapTime -= Time.deltaTime;
+        if (dableTapTime < 0) firstTap = false;
     }
 }
 

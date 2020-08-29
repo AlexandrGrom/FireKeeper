@@ -2,6 +2,7 @@
 
 public class MouseLook : MonoBehaviour
 {
+    [SerializeField] Hands hands;
     private float xRotation = 0;
 
     void Awake()
@@ -21,6 +22,6 @@ public class MouseLook : MonoBehaviour
 
     private void PickObject()
     {
-        print("PikObject");
+        hands.UseHands();  
     }
 }
