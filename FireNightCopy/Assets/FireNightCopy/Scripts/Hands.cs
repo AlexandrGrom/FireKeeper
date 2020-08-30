@@ -7,7 +7,7 @@ public class Hands : MonoBehaviour
     //or better use interface ipickable
     //alsov can be bug if object no hawe rb
 
-    private Rigidbody objectInHand;
+    private PickableObject objectInHand;
 
 
     public void UseHands()
@@ -21,19 +21,28 @@ public class Hands : MonoBehaviour
         Collider[] inGrabTrigger = Physics.OverlapSphere(transform.position, handsRadius);
         if (inGrabTrigger.Length > 0)
         {
-            Rigidbody target = inGrabTrigger[0].attachedRigidbody;
-            print(target.name);
+            for (int i = 0; i < inGrabTrigger.Length; i++)
+            {
+                if (inGrabTrigger[i].TryGetComponent(out objectInHand) )
+                {
+                    objectInHand.Pick(transform);
+                    break;
+                }
+            }
+/*            Rigidbody target = inGrabTrigger[0].attachedRigidbody;
+            //print(target.name);
             objectInHand = target;
             objectInHand.isKinematic = true;
             objectInHand.transform.position = transform.position;
-            objectInHand.transform.SetParent(transform,true);
+            objectInHand.transform.SetParent(transform,true);*/
         }
     }
 
     private void Relise()
     {
-        objectInHand.transform.SetParent(null , true);
-        objectInHand.isKinematic = false;
+        //objectInHand.transform.SetParent(null , true);
+        //objectInHand.isKinematic = false;
+        objectInHand.Relise();
         objectInHand = null;
     }
 
