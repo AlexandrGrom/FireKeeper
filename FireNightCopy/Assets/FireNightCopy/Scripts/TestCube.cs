@@ -2,6 +2,11 @@
 
 public class TestCube : PickableObject
 {
+    public override void Burn()
+    {
+        base.Burn();
+    }
+
     public override void Pick(Transform hands)
     {
         rigidbody.isKinematic = true;

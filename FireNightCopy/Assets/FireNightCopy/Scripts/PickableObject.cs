@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public abstract class PickableObject : MonoBehaviour
 {
+    [SerializeField] protected ParticleSystem sparkles;
     protected Rigidbody rigidbody;
     void Awake()
     {
@@ -14,4 +15,10 @@ public abstract class PickableObject : MonoBehaviour
         transform.SetParent(null, true);
     }
     public abstract void Pick(Transform hands);
+
+    public virtual void Burn()
+    {
+        Instantiate(sparkles, transform.position, Quaternion.identity);
+        transform.localScale = Vector3.zero;
+    }
 }

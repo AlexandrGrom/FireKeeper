@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
 
         float x = JoystickManager.Instance.movingJoystic.Horizontal;
         float z = JoystickManager.Instance.movingJoystic.Vertical;
+
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
         move *= speed * Time.deltaTime;
         move.y = gravity * Time.deltaTime;
